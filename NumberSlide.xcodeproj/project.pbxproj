@@ -13,6 +13,8 @@
 		4A1A41722291DD4600B5C33D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A1A41712291DD4600B5C33D /* Assets.xcassets */; };
 		4A1A41752291DD4600B5C33D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A1A41732291DD4600B5C33D /* LaunchScreen.storyboard */; };
 		4A1A417E2291DEE300B5C33D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A1A417D2291DEE300B5C33D /* Default-568h@2x.png */; };
+		4A1A41802291E0BA00B5C33D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A417F2291E0BA00B5C33D /* Tile.swift */; };
+		4A1A41822291EFBE00B5C33D /* NumberSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A41812291EFBE00B5C33D /* NumberSlide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4A1A41742291DD4600B5C33D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A1A41762291DD4600B5C33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A1A417D2291DEE300B5C33D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4A1A417F2291E0BA00B5C33D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		4A1A41812291EFBE00B5C33D /* NumberSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSlide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				4A1A416C2291DD4100B5C33D /* NumberSlideVC.swift */,
+				4A1A41812291EFBE00B5C33D /* NumberSlide.swift */,
+				4A1A417F2291E0BA00B5C33D /* Tile.swift */,
 				4A1A417C2291DD7800B5C33D /* Supporting Files */,
 			);
 			path = NumberSlide;
@@ -147,7 +153,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1A41802291E0BA00B5C33D /* Tile.swift in Sources */,
 				4A1A416D2291DD4100B5C33D /* NumberSlideVC.swift in Sources */,
+				4A1A41822291EFBE00B5C33D /* NumberSlide.swift in Sources */,
 				4A1A416B2291DD4100B5C33D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
