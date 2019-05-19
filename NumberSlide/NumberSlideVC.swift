@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NumberSlideVC.swift
 //  NumberSlide
 //
 //  Created by Phil Stern on 5/19/19.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NumberSlideVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
 
 }
 
