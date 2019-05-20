@@ -43,6 +43,38 @@ class NumberSlide {
             tiles[randomIndex] = tempTile
         }
     }
+    
+    func didMoveTileFrom(row: Int, col: Int, to direction: UISwipeGestureRecognizer.Direction) -> Bool {
+        switch direction {
+        case .left:
+            if col > 0 && board[row][col-1] == nil {
+                board[row][col-1] = board[row][col]
+                board[row][col] = nil
+                return true
+            }
+        case .right:
+            if col < 3 && board[row][col+1] == nil {
+                board[row][col+1] = board[row][col]
+                board[row][col] = nil
+                return true
+            }
+        case .up:
+            if row > 0 && board[row-1][col] == nil {
+                board[row-1][col] = board[row][col]
+                board[row][col] = nil
+                return true
+            }
+        case .down:
+            if row < 3 && board[row+1][col] == nil {
+                board[row+1][col] = board[row][col]
+                board[row][col] = nil
+                return true
+            }
+        default:
+            print("(NumberSlide.didMoveTileFrom) unknown swipe direction")
+        }
+        return false
+    }
 }
 
 // extend int to return random number from 0 to the int itself
