@@ -9,9 +9,14 @@
 import UIKit
 
 class NumberSlideVC: UIViewController {
+    
+    private var numberSlide = NumberSlide()
 
+    @IBOutlet weak var tileView: TileView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tileView.text = "3"
     }
 
 }
