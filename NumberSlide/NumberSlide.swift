@@ -45,35 +45,80 @@ class NumberSlide {
     }
     
     func didMoveTileFrom(row: Int, col: Int, to direction: UISwipeGestureRecognizer.Direction) -> Bool {
+        var tilesMoved = false
         switch direction {
         case .left:
             if col > 0 && board[row][col-1] == nil {
                 board[row][col-1] = board[row][col]
                 board[row][col] = nil
-                return true
+                tilesMoved = true
+            } else if col > 1 && board[row][col-2] == nil {
+                board[row][col-2] = board[row][col-1]
+                board[row][col-1] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
+            } else if col > 2 && board[row][col-3] == nil {
+                board[row][col-3] = board[row][col-2]
+                board[row][col-2] = board[row][col-1]
+                board[row][col-1] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
             }
         case .right:
             if col < 3 && board[row][col+1] == nil {
                 board[row][col+1] = board[row][col]
                 board[row][col] = nil
-                return true
+                tilesMoved = true
+            } else if col < 2 && board[row][col+2] == nil {
+                board[row][col+2] = board[row][col+1]
+                board[row][col+1] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
+            } else if col < 1 && board[row][col+3] == nil {
+                board[row][col+3] = board[row][col+2]
+                board[row][col+2] = board[row][col+1]
+                board[row][col+1] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
             }
         case .up:
             if row > 0 && board[row-1][col] == nil {
                 board[row-1][col] = board[row][col]
                 board[row][col] = nil
-                return true
+                tilesMoved = true
+            } else if row > 1 && board[row-2][col] == nil {
+                board[row-2][col] = board[row-1][col]
+                board[row-1][col] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
+            } else if row > 2 && board[row-3][col] == nil {
+                board[row-3][col] = board[row-2][col]
+                board[row-2][col] = board[row-1][col]
+                board[row-1][col] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
             }
         case .down:
             if row < 3 && board[row+1][col] == nil {
                 board[row+1][col] = board[row][col]
                 board[row][col] = nil
-                return true
+                tilesMoved = true
+            } else if row < 2 && board[row+2][col] == nil {
+                board[row+2][col] = board[row+1][col]
+                board[row+1][col] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
+            } else if row < 1 && board[row+3][col] == nil {
+                board[row+3][col] = board[row+2][col]
+                board[row+2][col] = board[row+1][col]
+                board[row+1][col] = board[row][col]
+                board[row][col] = nil
+                tilesMoved = true
             }
         default:
             print("(NumberSlide.didMoveTileFrom) unknown swipe direction")
         }
-        return false
+        return tilesMoved
     }
 }
 
