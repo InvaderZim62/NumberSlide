@@ -11,11 +11,12 @@ import UIKit
 class TileView: UIView {
     
     var text = ""
-    let fontSize = CGFloat(60.0)
     
     override func draw(_ rect: CGRect) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
+        
+        let fontSize = CGFloat(0.75 * self.bounds.height)
         
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: paragraphStyle,

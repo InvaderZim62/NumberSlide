@@ -16,10 +16,18 @@ class NumberSlideVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let tileGap = 2.0
+        let borderWidth = 0.04 * Double(boardView.bounds.width)
+        let tileWidth = (Double(boardView.bounds.width) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
+        let tileHeight = (Double(boardView.bounds.height) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
+
         for row in 0...3 {
             for col in 0...3 {
-                let frame = CGRect(x: 82 * col + 14, y: 82 * row + 14, width: 80, height: 80)
+                let frame = CGRect(x: (tileWidth + tileGap) * Double(col) + borderWidth,
+                                   y: (tileHeight + tileGap) * Double(row) + borderWidth,
+                                   width: tileWidth,
+                                   height: tileHeight)
                 let tileView = TileView(frame: frame)
                 if let tile = numberSlide.board[row][col] {
                     tileView.text = String(tile.identifier)
