@@ -10,9 +10,7 @@ import UIKit
 
 class Tile {
     
-    var position = (x: 0, y: 0)
-
-    private var identifier: Int
+    var identifier: Int
     
     private static var identifierFactory = 0
     

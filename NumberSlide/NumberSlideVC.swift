@@ -11,13 +11,28 @@ import UIKit
 class NumberSlideVC: UIViewController {
     
     private var numberSlide = NumberSlide()
-
-    @IBOutlet weak var tileView: TileView!
+    
+    @IBOutlet weak var boardView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tileView.text = "3"
+        
+        for row in 0...3 {
+            for col in 0...3 {
+                let frame = CGRect(x: 82 * col + 14, y: 82 * row + 14, width: 80, height: 80)
+                let tileView = TileView(frame: frame)
+                if let tile = numberSlide.board[row][col] {
+                    tileView.text = String(tile.identifier)
+                    if tile.identifier % 2 == 0 {
+                        tileView.backgroundColor = .red
+                    } else {
+                        tileView.backgroundColor = .white
+                    }
+                }
+                boardView.addSubview(tileView)
+            }
+        }
     }
-
+    
 }
 

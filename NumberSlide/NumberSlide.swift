@@ -11,7 +11,7 @@ import UIKit
 class NumberSlide {
 
     var tiles = [Tile]()
-    var board = [[Tile]]()
+    var board = [[Tile?]]()
     var isGameOver = false
     
     init() {
@@ -20,6 +20,19 @@ class NumberSlide {
             tiles.append(tile)
         }
         mixTiles()
+        var count = 0
+        for row in 0...3 {
+            var tileRow = [Tile?]()
+            for col in 0...3 {
+                if (row == 3 && col == 3) {
+                    tileRow.append(nil)
+                } else {
+                    tileRow.append(tiles[count])
+                    count += 1
+                }
+            }
+            board.append(tileRow)
+        }
     }
     
     private func mixTiles() {

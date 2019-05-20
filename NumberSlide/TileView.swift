@@ -20,7 +20,7 @@ class TileView: UIView {
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: paragraphStyle,
             .font: UIFont.systemFont(ofSize: fontSize),
-            .foregroundColor: UIColor.blue,
+            .foregroundColor: UIColor.brown,
         ]
 
         let attributedString = NSAttributedString(string: text, attributes: attributes)
