@@ -11,8 +11,8 @@ import UIKit
 class NumberSlideVC: UIViewController {
     
     private var game = NumberSlide()
-    private var tileViews = [TileView]()
-    
+    private var tileViews = [Int:TileView]()
+
     private var tileGap = 2.0
     private var borderWidth = 0.0  // computed in viewDidLoad
     private var tileWidth = 0.0
@@ -26,8 +26,12 @@ class NumberSlideVC: UIViewController {
         borderWidth = 0.04 * Double(boardView.bounds.width)
         tileWidth = (Double(boardView.bounds.width) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
         tileHeight = (Double(boardView.bounds.height) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
-        
-        // create tileViews (one for each game tile)
+
+        createTileViews()
+        setTileViewPositions()
+    }
+    
+    private func createTileViews() {
         for tile in game.tiles {
             let tileView = TileView()
             
@@ -54,19 +58,19 @@ class NumberSlideVC: UIViewController {
             let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(tileSwiped))
             swipeDown.direction = .down
             tileView.addGestureRecognizer(swipeDown)
-            tileViews.append(tileView)
-
+            
+            tileViews[tile.identifier] = tileView
+            
             // add tileViews to boardView
             boardView.addSubview(tileView)
         }
-        updateTileViewPositions()
     }
     
-    private func updateTileViewPositions() {
+    private func setTileViewPositions() {
         for row in 0...3 {
             for col in 0...3 {
                 if let tile = game.board[row][col] {
-                    let tileView = tileViews[tile.identifier - 1]
+                    let tileView = tileViews[tile.identifier]!
                     let frame = CGRect(x: (tileWidth + tileGap) * Double(col) + borderWidth,
                                        y: (tileHeight + tileGap) * Double(row) + borderWidth,
                                        width: tileWidth,
@@ -85,7 +89,7 @@ class NumberSlideVC: UIViewController {
             let col = Int(round((Double(tileView.frame.origin.x) - borderWidth) / (tileWidth + tileGap)))
             
             if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
-                updateTileViewPositions()
+                setTileViewPositions()
             }
         }
     }

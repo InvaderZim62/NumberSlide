@@ -15,19 +15,30 @@ class NumberSlide {
     var isGameOver = false
     
     init() {
-        resetBoard()
-    }
-    
-    func resetBoard() {
-        tiles.removeAll()
-        board.removeAll()
-        
         // create tiles
         for _ in 1...15 {
             let tile = Tile()
             tiles.append(tile)
         }
         mixTiles()
+    }
+    
+    // ramdomly change the order of the tiles array (verify it's solvable)
+    func mixTiles() {
+        repeat {
+            for index in tiles.indices {
+                let tempTile = tiles[index]
+                let randomIndex = tiles.count.arc4random  // my extension, below
+                tiles[index] = tiles[randomIndex]
+                tiles[randomIndex] = tempTile
+            }
+        } while !isSolvable()
+        
+        replaceTilesOnBoard()
+    }
+
+    func replaceTilesOnBoard() {
+        board.removeAll()
         
         // place tiles on board, leaving last square blank
         var tileCount = 0
@@ -43,18 +54,6 @@ class NumberSlide {
             }
             board.append(tileRow)  // append next row of three tiles
         }
-    }
-    
-    // ramdomly change the order of the tiles array (verify it's solvable)
-    func mixTiles() {
-        repeat {
-            for index in tiles.indices {
-                let tempTile = tiles[index]
-                let randomIndex = tiles.count.arc4random  // my extension, below
-                tiles[index] = tiles[randomIndex]
-                tiles[randomIndex] = tempTile
-            }
-        } while !isSolvable()
     }
     
     // Algorithm to determine if a 15 puzzle is solvable (from: http://mathworld.wolfram.com/15Puzzle.html)
