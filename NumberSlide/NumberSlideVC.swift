@@ -18,7 +18,7 @@ class NumberSlideVC: UIViewController {
     private var player: AVAudioPlayer?
 
     private var tileGap = 2.0
-    private var borderWidth = 0.0  // computed in viewDidLoad
+    private var borderWidth = 0.0  // computed in viewDidLayoutSubviews
     private var tileWidth = 0.0
     private var tileHeight = 0.0
     
@@ -26,13 +26,18 @@ class NumberSlideVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        createTileViews()
+    }
+    
+    override func viewDidLayoutSubviews() {  // bounds are set
+        super.viewDidLayoutSubviews()
+    
         borderWidth = 0.04 * Double(boardView.bounds.width)
         tileWidth = (Double(boardView.bounds.width) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
         tileHeight = (Double(boardView.bounds.height) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
 
-        createTileViews()
         setTileViewPositions()
+        checkIfPuzzleSolved()  // check, just in case
     }
     
     private func createTileViews() {
@@ -88,14 +93,35 @@ class NumberSlideVC: UIViewController {
     @objc private func tileSwiped(recognizer: UISwipeGestureRecognizer) {
         if let tileView = recognizer.view {
             
-            // compute row and col of swiped tile
+            // compute row and col of swiped tile (inverse of frame equations above)
             let row = Int(round((Double(tileView.frame.origin.y) - borderWidth) / (tileHeight + tileGap)))
             let col = Int(round((Double(tileView.frame.origin.x) - borderWidth) / (tileWidth + tileGap)))
             
             if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
-                playClickSound()
                 setTileViewPositions()
+                playClickSound()
+                checkIfPuzzleSolved()
             }
+        }
+    }
+    
+    func checkIfPuzzleSolved() {
+        var solved = true
+        var tileCount = 1
+        for row in 0...3 {
+            for col in 0...3 {
+                if let tile = game.board[row][col] {
+                    if tile.identifier != tileCount { solved = false }
+                    tileCount += 1
+                } else {
+                    if row + col != 6 { solved = false }  // blank space must be last
+                }
+            }
+        }
+        if solved {
+            view.backgroundColor = .blue
+        } else {
+            view.backgroundColor = .lightGray
         }
     }
     
@@ -114,11 +140,12 @@ class NumberSlideVC: UIViewController {
         }
     }
     
-    // called when iPhone is shaken
+    // mix tiles when iPhone is shaken
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             game.mixTiles()
             setTileViewPositions()
+            checkIfPuzzleSolved()  // check, just in case
         }
     }
 }
