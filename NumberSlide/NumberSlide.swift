@@ -36,11 +36,33 @@ class NumberSlide {
     }
     
     private func mixTiles() {
-        for index in tiles.indices {
-            let tempTile = tiles[index]
-            let randomIndex = tiles.count.arc4random  // my extension, below
-            tiles[index] = tiles[randomIndex]
-            tiles[randomIndex] = tempTile
+        repeat {
+            for index in tiles.indices {
+                let tempTile = tiles[index]
+                let randomIndex = tiles.count.arc4random  // my extension, below
+                tiles[index] = tiles[randomIndex]
+                tiles[randomIndex] = tempTile
+            }
+        } while !isSolvable()
+    }
+    
+    //
+    // Algorithm to determine if a 15 puzzle is solvable
+    // from: http://mathworld.wolfram.com/15Puzzle.html
+    //
+    private func isSolvable() -> Bool {
+        var inversionCount = 0
+        for i in 0...13 {
+            let num1 = tiles[i].identifier
+            for j in (i + 1)...14 {
+                let num2 = tiles[j].identifier
+                if num2 < num1 { inversionCount += 1 }
+            }
+        }
+        if inversionCount % 2 == 0 {
+            return true
+        } else {
+            return false
         }
     }
     
