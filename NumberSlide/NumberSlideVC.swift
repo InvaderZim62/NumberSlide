@@ -5,13 +5,17 @@
 //  Created by Phil Stern on 5/19/19.
 //  Copyright © 2019 Phil Stern. All rights reserved.
 //
+//  click.wav obtained from: https://fresound.org/people/kwahmah_02/sounds/256116
+//
 
 import UIKit
+import AVFoundation
 
 class NumberSlideVC: UIViewController {
     
     private var game = NumberSlide()
     private var tileViews = [Int:TileView]()
+    private var player: AVAudioPlayer?
 
     private var tileGap = 2.0
     private var borderWidth = 0.0  // computed in viewDidLoad
@@ -89,11 +93,28 @@ class NumberSlideVC: UIViewController {
             let col = Int(round((Double(tileView.frame.origin.x) - borderWidth) / (tileWidth + tileGap)))
             
             if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
+                playClickSound()
                 setTileViewPositions()
             }
         }
     }
     
+    func playClickSound() {
+        guard let url = Bundle.main.url(forResource: "click", withExtension: "wav") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            guard let player = player else { return }
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    // called when iPhone is shaken
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             game.mixTiles()
