@@ -98,9 +98,14 @@ class NumberSlideVC: UIViewController {
             let col = Int(round((Double(tileView.frame.origin.x) - borderWidth) / (tileWidth + tileGap)))
             
             if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
-                setTileViewPositions()
-                playClickSound()
-                checkIfPuzzleSolved()
+                UIView.transition(with: boardView,
+                                  duration: 0.2,
+                                  options: [],
+                                  animations: { self.setTileViewPositions() },
+                                  completion: { position in
+                                    self.playClickSound()
+                                    self.checkIfPuzzleSolved() }
+                )
             }
         }
     }
@@ -144,8 +149,13 @@ class NumberSlideVC: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             game.mixTiles()
-            setTileViewPositions()
-            checkIfPuzzleSolved()  // check, just in case
+            UIView.transition(with: boardView,
+                              duration: 0.3,
+                              options: [],
+                              animations: { self.setTileViewPositions() },
+                              completion: { position in
+                                self.checkIfPuzzleSolved() }
+            )
         }
     }
 }
