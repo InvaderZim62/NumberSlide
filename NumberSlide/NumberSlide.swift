@@ -15,27 +15,38 @@ class NumberSlide {
     var isGameOver = false
     
     init() {
+        resetBoard()
+    }
+    
+    func resetBoard() {
+        tiles.removeAll()
+        board.removeAll()
+        
+        // create tiles
         for _ in 1...15 {
             let tile = Tile()
             tiles.append(tile)
         }
         mixTiles()
-        var count = 0
+        
+        // place tiles on board, leaving last square blank
+        var tileCount = 0
         for row in 0...3 {
             var tileRow = [Tile?]()
             for col in 0...3 {
-                if (row == 3 && col == 3) {
+                if (row == 3 && col == 3) {  // leave last square blank
                     tileRow.append(nil)
                 } else {
-                    tileRow.append(tiles[count])
-                    count += 1
+                    tileRow.append(tiles[tileCount])
+                    tileCount += 1
                 }
             }
-            board.append(tileRow)
+            board.append(tileRow)  // append next row of three tiles
         }
     }
     
-    private func mixTiles() {
+    // ramdomly change the order of the tiles array (verify it's solvable)
+    func mixTiles() {
         repeat {
             for index in tiles.indices {
                 let tempTile = tiles[index]
@@ -46,10 +57,10 @@ class NumberSlide {
         } while !isSolvable()
     }
     
-    //
-    // Algorithm to determine if a 15 puzzle is solvable
-    // from: http://mathworld.wolfram.com/15Puzzle.html
-    //
+    // Algorithm to determine if a 15 puzzle is solvable (from: http://mathworld.wolfram.com/15Puzzle.html)
+    // If the inversion count is even, the puzzle is solvable.
+    // Note: add row number of blank square to inversionCount, if you ever make it random
+    //       (currently row = 4, which doesn't change whether the count is even or odd)
     private func isSolvable() -> Bool {
         var inversionCount = 0
         for i in 0...13 {
