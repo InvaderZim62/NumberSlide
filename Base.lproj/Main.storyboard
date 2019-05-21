@@ -19,20 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBb-BC-1qm">
-                                <rect key="frame" x="10.5" y="166.5" width="354" height="354"/>
+                                <rect key="frame" x="10" y="166" width="355" height="355"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="354" id="Ngb-87-WdF"/>
-                                    <constraint firstAttribute="width" constant="354" id="rp2-ee-PvJ"/>
+                                    <constraint firstAttribute="width" secondItem="TBb-BC-1qm" secondAttribute="height" multiplier="1:1" id="hch-St-OIG"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TBb-BC-1qm" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Dtv-Ay-kiz"/>
-                            <constraint firstItem="TBb-BC-1qm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qnp-QK-Htr"/>
+                            <constraint firstItem="TBb-BC-1qm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Eb1-IP-Vpx"/>
+                            <constraint firstItem="TBb-BC-1qm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lnc-wI-AUk"/>
+                            <constraint firstItem="TBb-BC-1qm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="agb-cc-m57"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TBb-BC-1qm" secondAttribute="bottom" constant="10" id="dhx-Nt-Ay2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TBb-BC-1qm" secondAttribute="trailing" constant="10" id="vKB-u6-48N"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dhx-Nt-Ay2"/>
+                                <exclude reference="Eb1-IP-Vpx"/>
+                                <exclude reference="Lnc-wI-AUk"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="dhx-Nt-Ay2"/>
+                                <exclude reference="vKB-u6-48N"/>
+                                <exclude reference="Dtv-Ay-kiz"/>
+                                <include reference="Eb1-IP-Vpx"/>
+                                <include reference="Lnc-wI-AUk"/>
+                                <exclude reference="agb-cc-m57"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="boardView" destination="TBb-BC-1qm" id="Ie6-eh-hdT"/>
@@ -40,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="128.18590704647679"/>
+            <point key="canvasLocation" x="120.08995502248877" y="127.2"/>
         </scene>
     </scenes>
 </document>
