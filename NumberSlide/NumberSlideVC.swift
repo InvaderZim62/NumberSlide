@@ -18,10 +18,17 @@ class NumberSlideVC: UIViewController {
     private var tileWidth = 0.0
     private var tileHeight = 0.0
     
+    override var canBecomeFirstResponder: Bool {  // to get shake gesture
+        get {
+            return true
+        }
+    }
+
     @IBOutlet weak var boardView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        becomeFirstResponder()  // to get shake gesture
 
         borderWidth = 0.04 * Double(boardView.bounds.width)
         tileWidth = (Double(boardView.bounds.width) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
@@ -91,6 +98,13 @@ class NumberSlideVC: UIViewController {
             if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
                 setTileViewPositions()
             }
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            game.mixTiles()
+            setTileViewPositions()
         }
     }
 }
