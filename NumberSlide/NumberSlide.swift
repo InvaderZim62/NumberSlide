@@ -166,8 +166,8 @@ class NumberSlide {
                 if let tile = board[row][col] {
                     if tile.identifier != tileCount { puzzleSolved = false }
                     tileCount += 1
-                } else {
-                    if row + col != 6 { puzzleSolved = false }  // blank space must be last
+                } else if row + col != 6 {  // blank space must be last
+                    puzzleSolved = false
                 }
             }
         }
