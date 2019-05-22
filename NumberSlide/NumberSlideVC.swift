@@ -68,8 +68,6 @@ class NumberSlideVC: UIViewController {
             tileView.addGestureRecognizer(swipeDown)
             
             tileViews[tile.identifier] = tileView
-            
-            // add tileViews to boardView
             boardView.addSubview(tileView)
         }
     }
@@ -110,19 +108,9 @@ class NumberSlideVC: UIViewController {
     }
     
     func checkIfPuzzleSolved() {
-        var solved = true
-        var tileCount = 1
-        for row in 0...3 {
-            for col in 0...3 {
-                if let tile = game.board[row][col] {
-                    if tile.identifier != tileCount { solved = false }
-                    tileCount += 1
-                } else {
-                    if row + col != 6 { solved = false }  // blank space must be last
-                }
-            }
+        if game.puzzleSolved {
+            playTaDaSound()
         }
-        if solved { playTaDaSound() }
     }
     
     func playClickSound() {
@@ -155,7 +143,7 @@ class NumberSlideVC: UIViewController {
         }
     }
 
-    // mix tiles when iPhone is shaken
+    // mix tiles when iPhone is shaked
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             game.mixTiles()

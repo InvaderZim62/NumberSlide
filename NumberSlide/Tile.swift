@@ -12,25 +12,14 @@ class Tile {
     
     var identifier: Int
     
-    private static var identifierFactory = 0
-    
-    private static func getUniqueIdentifier() -> Int {
-        identifierFactory += 1
-        return identifierFactory
-    }
+    private static var identifierCount = 0
     
     init() {
         self.identifier = Tile.getUniqueIdentifier()
     }
-}
 
-extension Tile: Hashable {  // make hashable, so it can be used as a dictionary key
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-    }
-    
-    static func ==(lhs: Tile, rhs: Tile) -> Bool {
-        return lhs.identifier == rhs.identifier
+    private static func getUniqueIdentifier() -> Int {
+        identifierCount += 1
+        return identifierCount
     }
 }

@@ -12,6 +12,7 @@ class NumberSlide {
 
     var tiles = [Tile]()
     var board = [[Tile?]]()
+    var puzzleSolved = false
     
     private var blankRow = 3
     private var blankCol = 3
@@ -27,6 +28,7 @@ class NumberSlide {
     
     // ramdomly change the order of the tiles array (verify it's solvable)
     func mixTiles() {
+        puzzleSolved = false
         blankRow = 4.arc4random
         blankCol = 4.arc4random
         repeat {
@@ -52,7 +54,6 @@ class NumberSlide {
                 if num2 < num1 { inversionCount += 1 }
             }
         }
-        print(inversionCount)
         if inversionCount % 2 == 0 {
             return true
         } else {
@@ -153,7 +154,23 @@ class NumberSlide {
         default:
             print("(NumberSlide.didMoveTileFrom) unknown swipe direction")
         }
+        checkIfPuzzleSolved()
         return tilesMoved
+    }
+    
+    private func checkIfPuzzleSolved() {
+        puzzleSolved = true
+        var tileCount = 1
+        for row in 0...3 {
+            for col in 0...3 {
+                if let tile = board[row][col] {
+                    if tile.identifier != tileCount { puzzleSolved = false }
+                    tileCount += 1
+                } else {
+                    if row + col != 6 { puzzleSolved = false }  // blank space must be last
+                }
+            }
+        }
     }
 }
 
