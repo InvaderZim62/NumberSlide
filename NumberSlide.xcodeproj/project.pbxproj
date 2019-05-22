@@ -17,6 +17,7 @@
 		4A1A41822291EFBE00B5C33D /* NumberSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A41812291EFBE00B5C33D /* NumberSlide.swift */; };
 		4A1A41842292008500B5C33D /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A41832292008500B5C33D /* TileView.swift */; };
 		4AB29BC6229499F900D1B9C0 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AB29BC5229499F900D1B9C0 /* click.wav */; };
+		4AB29BC82294CD4400D1B9C0 /* tada.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AB29BC72294CD4400D1B9C0 /* tada.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4A1A41812291EFBE00B5C33D /* NumberSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSlide.swift; sourceTree = "<group>"; };
 		4A1A41832292008500B5C33D /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		4AB29BC5229499F900D1B9C0 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
+		4AB29BC72294CD4400D1B9C0 /* tada.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tada.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				4A1A41812291EFBE00B5C33D /* NumberSlide.swift */,
 				4A1A417F2291E0BA00B5C33D /* Tile.swift */,
 				4AB29BC5229499F900D1B9C0 /* click.wav */,
+				4AB29BC72294CD4400D1B9C0 /* tada.wav */,
 				4A1A417C2291DD7800B5C33D /* Supporting Files */,
 			);
 			path = NumberSlide;
@@ -145,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB29BC82294CD4400D1B9C0 /* tada.wav in Resources */,
 				4A1A41752291DD4600B5C33D /* LaunchScreen.storyboard in Resources */,
 				4A1A417E2291DEE300B5C33D /* Default-568h@2x.png in Resources */,
 				4AB29BC6229499F900D1B9C0 /* click.wav in Resources */,

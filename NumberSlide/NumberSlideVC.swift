@@ -123,11 +123,7 @@ class NumberSlideVC: UIViewController {
                 }
             }
         }
-        if solved {
-            view.backgroundColor = .blue
-        } else {
-            view.backgroundColor = .lightGray
-        }
+        if solved { playTaDaSound() }
     }
     
     func playClickSound() {
@@ -145,6 +141,21 @@ class NumberSlideVC: UIViewController {
         }
     }
     
+    func playTaDaSound() {
+        guard let url = Bundle.main.url(forResource: "tada", withExtension: "wav") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            guard let player = player else { return }
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+
     // mix tiles when iPhone is shaken
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
