@@ -11,7 +11,7 @@
 import UIKit
 import AVFoundation
 
-class NumberSlideVC: UIViewController {
+class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     
     private var game = NumberSlide()
     private var tileViews = [Int:TileView]()
@@ -23,9 +23,11 @@ class NumberSlideVC: UIViewController {
     private var tileHeight = 0.0
     
     @IBOutlet weak var boardView: UIView!
+    @IBOutlet weak var playAgainButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        playAgainButton.isHidden = true
         createTileViews()
     }
     
@@ -110,9 +112,34 @@ class NumberSlideVC: UIViewController {
     func checkIfPuzzleSolved() {
         if game.puzzleSolved {
             playTaDaSound()
+        } else {
+            playAgainButton.isHidden = true
         }
     }
     
+    // wait until TaDa sound finishes, before showing "Play Again" button
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        playAgainButton.isHidden = false
+    }
+
+    @IBAction func playAgainButtonPressed(_ sender: UIButton) {
+        game.mixTiles()
+        UIView.transition(with: boardView,
+                          duration: 0.3,
+                          options: [],
+                          animations: { self.setTileViewPositions() },
+                          completion: { position in
+                            self.checkIfPuzzleSolved() }
+        )
+    }
+    
+    // "Play Again" when iPhone shaked
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            playAgainButton.sendActions(for: .touchUpInside)
+        }
+    }
+
     func playClickSound() {
         guard let url = Bundle.main.url(forResource: "click", withExtension: "wav") else { return }
         do {
@@ -136,24 +163,11 @@ class NumberSlideVC: UIViewController {
             
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
             guard let player = player else { return }
+            player.delegate = self  // to receive call to audioPlayerDidFinishPlaying
             player.play()
             
         } catch let error {
             print(error.localizedDescription)
-        }
-    }
-
-    // mix tiles when iPhone is shaked
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            game.mixTiles()
-            UIView.transition(with: boardView,
-                              duration: 0.3,
-                              options: [],
-                              animations: { self.setTileViewPositions() },
-                              completion: { position in
-                                self.checkIfPuzzleSolved() }
-            )
         }
     }
 }

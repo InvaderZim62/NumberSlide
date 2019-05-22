@@ -25,37 +25,65 @@
                                     <constraint firstAttribute="width" secondItem="TBb-BC-1qm" secondAttribute="height" multiplier="1:1" id="hch-St-OIG"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0O-zy-kyj">
+                                <rect key="frame" x="142.66666666666666" y="647" width="128.99999999999997" height="39"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
+                                <state key="normal" title="Play Again">
+                                    <color key="titleColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playAgainButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Aw-Qy-I6b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TBb-BC-1qm" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Dtv-Ay-kiz"/>
                             <constraint firstItem="TBb-BC-1qm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Eb1-IP-Vpx"/>
+                            <constraint firstItem="b0O-zy-kyj" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="FAy-3S-V4H"/>
                             <constraint firstItem="TBb-BC-1qm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lnc-wI-AUk"/>
                             <constraint firstItem="TBb-BC-1qm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="agb-cc-m57"/>
+                            <constraint firstItem="b0O-zy-kyj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="caY-IC-KFb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b0O-zy-kyj" secondAttribute="bottom" constant="50" id="dTc-Z6-qh4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TBb-BC-1qm" secondAttribute="bottom" constant="10" id="dhx-Nt-Ay2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TBb-BC-1qm" secondAttribute="trailing" constant="10" id="vKB-u6-48N"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b0O-zy-kyj" secondAttribute="trailing" constant="14" id="wMJ-dG-ceY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="dhx-Nt-Ay2"/>
+                                <exclude reference="wMJ-dG-ceY"/>
                                 <exclude reference="Eb1-IP-Vpx"/>
                                 <exclude reference="Lnc-wI-AUk"/>
+                                <exclude reference="FAy-3S-V4H"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
+                                <exclude reference="dTc-Z6-qh4"/>
                                 <include reference="dhx-Nt-Ay2"/>
                                 <exclude reference="vKB-u6-48N"/>
+                                <include reference="wMJ-dG-ceY"/>
                                 <exclude reference="Dtv-Ay-kiz"/>
                                 <include reference="Eb1-IP-Vpx"/>
                                 <include reference="Lnc-wI-AUk"/>
                                 <exclude reference="agb-cc-m57"/>
+                                <include reference="FAy-3S-V4H"/>
+                                <exclude reference="caY-IC-KFb"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="boardView" destination="TBb-BC-1qm" id="Ie6-eh-hdT"/>
+                        <outlet property="playAgainButton" destination="b0O-zy-kyj" id="WsS-Am-08Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
