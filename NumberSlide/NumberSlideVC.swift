@@ -99,7 +99,7 @@ class NumberSlideVC: UIViewController {
             
             if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
                 UIView.transition(with: boardView,
-                                  duration: 0.2,
+                                  duration: 0.1,
                                   options: [],
                                   animations: { self.setTileViewPositions() },
                                   completion: { position in
