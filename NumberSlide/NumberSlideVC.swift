@@ -37,7 +37,6 @@ class NumberSlideVC: UIViewController {
         tileHeight = (Double(boardView.bounds.height) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
 
         setTileViewPositions()
-        checkIfPuzzleSolved()  // check, just in case
     }
     
     private func createTileViews() {
