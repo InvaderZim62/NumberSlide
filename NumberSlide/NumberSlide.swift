@@ -27,6 +27,8 @@ class NumberSlide {
     
     // ramdomly change the order of the tiles array (verify it's solvable)
     func mixTiles() {
+        blankRow = 4.arc4random
+        blankCol = 4.arc4random
         repeat {
             for index in tiles.indices {
                 let tempTile = tiles[index]
@@ -36,9 +38,26 @@ class NumberSlide {
             }
         } while !isSolvable()
         
-        blankRow = 4.arc4random
-        blankCol = 4.arc4random
         placeTilesOnBoard()
+    }
+    
+    // Algorithm to determine if a 15 puzzle is solvable (from: http://mathworld.wolfram.com/15Puzzle.html)
+    // If the inversion count is even, the puzzle is solvable.
+    private func isSolvable() -> Bool {
+        var inversionCount = blankRow + 1
+        for i in 0...13 {
+            let num1 = tiles[i].identifier
+            for j in (i + 1)...14 {
+                let num2 = tiles[j].identifier
+                if num2 < num1 { inversionCount += 1 }
+            }
+        }
+        print(inversionCount)
+        if inversionCount % 2 == 0 {
+            return true
+        } else {
+            return false
+        }
     }
 
     func placeTilesOnBoard() {
@@ -59,25 +78,7 @@ class NumberSlide {
             board.append(tileRow)  // append next row of three tiles
         }
     }
-    
-    // Algorithm to determine if a 15 puzzle is solvable (from: http://mathworld.wolfram.com/15Puzzle.html)
-    // If the inversion count is even, the puzzle is solvable.
-    private func isSolvable() -> Bool {
-        var inversionCount = blankRow + 1
-        for i in 0...13 {
-            let num1 = tiles[i].identifier
-            for j in (i + 1)...14 {
-                let num2 = tiles[j].identifier
-                if num2 < num1 { inversionCount += 1 }
-            }
-        }
-        if inversionCount % 2 == 0 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
+
     func didMoveTileFrom(row: Int, col: Int, to direction: UISwipeGestureRecognizer.Direction) -> Bool {
         var tilesMoved = false
         switch direction {
