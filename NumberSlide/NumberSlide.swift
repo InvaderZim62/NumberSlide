@@ -12,7 +12,6 @@ class NumberSlide {
 
     var tiles = [Tile]()
     var board = [[Tile?]]()
-    var puzzleSolved = false
     
     private var blankRow = 3
     private var blankCol = 3
@@ -26,9 +25,26 @@ class NumberSlide {
         mixTiles()
     }
     
+    func save() {
+        let defaults = UserDefaults.standard
+        let boardData = try! JSONEncoder().encode(board)
+        defaults.set(boardData, forKey: "board")
+        defaults.set(blankRow, forKey: "blankRow")
+        defaults.set(blankCol, forKey: "blankCol")
+    }
+    
+    func restore() {
+        let defaults = UserDefaults.standard
+        let boardData = defaults.data(forKey: "board")
+        board = try! JSONDecoder().decode([[Tile?]].self, from: boardData!)
+        // convert 2D array to 1D array (flatMap) and remove nils (compactMap)
+        tiles = board.flatMap { $0 }.compactMap { $0 }
+        blankRow = defaults.integer(forKey: "blankRow")
+        blankCol = defaults.integer(forKey: "blankCol")
+    }
+
     // ramdomly change the order of the tiles array and verify it's solvable
     func mixTiles() {
-        puzzleSolved = false
         blankRow = 4.arc4random
         blankCol = 4.arc4random
         repeat {
@@ -154,12 +170,11 @@ class NumberSlide {
         default:
             print("(NumberSlide.didMoveTileFrom) unknown swipe direction")
         }
-        checkIfPuzzleSolved()
         return tilesMoved
     }
     
-    private func checkIfPuzzleSolved() {
-        puzzleSolved = true
+    func isPuzzleSolved() -> Bool {
+        var puzzleSolved = true
         var tileCount = 1
         for row in 0...3 {
             for col in 0...3 {
@@ -171,6 +186,7 @@ class NumberSlide {
                 }
             }
         }
+        return puzzleSolved
     }
 }
 

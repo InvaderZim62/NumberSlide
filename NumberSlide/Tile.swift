@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Tile {
+class Tile: Codable {  // Codeable, so it can be saved in UserDefaults
     
     var identifier: Int
     

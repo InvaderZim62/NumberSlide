@@ -30,6 +30,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         playAgainButton.isHidden = true
+        game.restore()
         createTileViews()
     }
     
@@ -42,6 +43,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
         tileHeight = (Double(boardView.bounds.height) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
 
         setTileViewPositions()
+        checkIfPuzzleSolved()
     }
     
     private func createTileViews() {
@@ -110,12 +112,13 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
                                     self.playClickSound()
                                     self.checkIfPuzzleSolved() }
                 )
+                game.save()
             }
         }
     }
     
     func checkIfPuzzleSolved() {
-        if game.puzzleSolved {
+        if game.isPuzzleSolved() {
             playTaDaSound()
         } else {
             playAgainButton.isHidden = true
@@ -129,6 +132,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
 
     @IBAction func playAgainButtonPressed(_ sender: UIButton) {
         game.mixTiles()
+        game.save()
         UIView.transition(with: boardView,
                           duration: 0.3,
                           options: [],
