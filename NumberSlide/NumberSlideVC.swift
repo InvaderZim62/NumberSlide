@@ -30,11 +30,11 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         playAgainButton.isHidden = true
-        game.restore()
+        game.restore()  // pick up where you left off
         createTileViews()
     }
     
-    // initially called after viewDidLoad and when bounds change
+    // called after viewDidLoad, when bounds change, or when button or label text changes
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     

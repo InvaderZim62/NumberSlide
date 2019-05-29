@@ -35,12 +35,11 @@ class NumberSlide {
     
     func restore() {
         let defaults = UserDefaults.standard
-        let boardData = defaults.data(forKey: "board")
-        board = try! JSONDecoder().decode([[Tile?]].self, from: boardData!)
-        // convert 2D array to 1D array (flatMap) and remove nils (compactMap)
-        tiles = board.flatMap { $0 }.compactMap { $0 }
-        blankRow = defaults.integer(forKey: "blankRow")
-        blankCol = defaults.integer(forKey: "blankCol")
+        if let boardData = defaults.data(forKey: "board") {
+            board = try! JSONDecoder().decode([[Tile?]].self, from: boardData)
+            blankRow = defaults.integer(forKey: "blankRow")
+            blankCol = defaults.integer(forKey: "blankCol")
+        }
     }
 
     // ramdomly change the order of the tiles array and verify it's solvable
@@ -57,24 +56,6 @@ class NumberSlide {
         } while !isSolvable()
         
         placeTilesOnBoard()
-    }
-    
-    // Algorithm to determine if a 15 puzzle is solvable (from: http://mathworld.wolfram.com/15Puzzle.html)
-    // If the inversion count is even, the puzzle is solvable.
-    private func isSolvable() -> Bool {
-        var inversionCount = blankRow + 1
-        for i in 0...13 {
-            let num1 = tiles[i].identifier
-            for j in (i + 1)...14 {
-                let num2 = tiles[j].identifier
-                if num2 < num1 { inversionCount += 1 }
-            }
-        }
-        if inversionCount % 2 == 0 {
-            return true
-        } else {
-            return false
-        }
     }
 
     private func placeTilesOnBoard() {
@@ -173,6 +154,24 @@ class NumberSlide {
         return tilesMoved
     }
     
+    // Algorithm to determine if a 15 puzzle is solvable (from: http://mathworld.wolfram.com/15Puzzle.html)
+    // If the inversion count is even, the puzzle is solvable.
+    private func isSolvable() -> Bool {
+        var inversionCount = blankRow + 1
+        for i in 0...13 {
+            let num1 = tiles[i].identifier
+            for j in (i + 1)...14 {
+                let num2 = tiles[j].identifier
+                if num2 < num1 { inversionCount += 1 }
+            }
+        }
+        if inversionCount % 2 == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func isPuzzleSolved() -> Bool {
         var puzzleSolved = true
         var tileCount = 1
