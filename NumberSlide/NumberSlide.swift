@@ -26,7 +26,7 @@ class NumberSlide {
         mixTiles()
     }
     
-    // ramdomly change the order of the tiles array (verify it's solvable)
+    // ramdomly change the order of the tiles array and verify it's solvable
     func mixTiles() {
         puzzleSolved = false
         blankRow = 4.arc4random
@@ -61,10 +61,10 @@ class NumberSlide {
         }
     }
 
-    func placeTilesOnBoard() {
+    private func placeTilesOnBoard() {
         board.removeAll()
         
-        // place tiles on board, leaving last square blank
+        // place tiles on board, leaving one square blank
         var tileCount = 0
         for row in 0...3 {
             var tileRow = [Tile?]()
@@ -80,7 +80,7 @@ class NumberSlide {
         }
     }
 
-    func didMoveTileFrom(row: Int, col: Int, to direction: UISwipeGestureRecognizer.Direction) -> Bool {
+    func moveTileFrom(row: Int, col: Int, to direction: UISwipeGestureRecognizer.Direction) -> Bool {
         var tilesMoved = false
         switch direction {
         case .left:

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Phil Stern. All rights reserved.
 //
 //  click.wav obtained from: https://fresound.org/people/kwahmah_02/sounds/256116
+//  tada.wav obtained from: https://fresound.org/people/jimhancock/sounds/376318
+//  both files are in the public domain (CC0 1.0 Universal)
 //
 
 import UIKit
@@ -31,7 +33,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
         createTileViews()
     }
     
-    override func viewDidLayoutSubviews() {  // bounds are set
+    // initially called after viewDidLoad and when bounds change
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     
         borderWidth = 0.04 * Double(boardView.bounds.width)
@@ -48,11 +51,12 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
             tileView.text = String(tile.identifier)
             
             if tile.identifier % 2 == 0 {
-                tileView.backgroundColor = .red
+                tileView.backgroundColor = .red  // even numbered tile are red
             } else {
-                tileView.backgroundColor = .white
+                tileView.backgroundColor = .white  // odd numbered tiles are white
             }
             
+            // add four swipe gestures to tileView
             let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(tileSwiped))
             swipeLeft.direction = .left
             tileView.addGestureRecognizer(swipeLeft)
@@ -96,7 +100,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
             let row = Int(round((Double(tileView.frame.origin.y) - borderWidth) / (tileHeight + tileGap)))
             let col = Int(round((Double(tileView.frame.origin.x) - borderWidth) / (tileWidth + tileGap)))
             
-            if game.didMoveTileFrom(row: row, col: col, to: recognizer.direction) {
+            if game.moveTileFrom(row: row, col: col, to: recognizer.direction) {
+                // animate moving the swiped tile(s)
                 UIView.transition(with: boardView,
                                   duration: 0.1,
                                   options: [],
@@ -133,7 +138,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
         )
     }
     
-    // "Play Again" when iPhone shaked
+    // call "Play Again" when iPhone shaken
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             playAgainButton.sendActions(for: .touchUpInside)
