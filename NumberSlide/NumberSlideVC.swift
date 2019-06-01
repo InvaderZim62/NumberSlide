@@ -20,7 +20,6 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     private var player: AVAudioPlayer?
 
     private var tileGap = 2.0
-    private var borderWidth = 0.0  // computed in viewDidLayoutSubviews
     private var tileWidth = 0.0
     private var tileHeight = 0.0
     
@@ -38,9 +37,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     
-        borderWidth = 0.04 * Double(boardView.bounds.width)
-        tileWidth = (Double(boardView.bounds.width) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
-        tileHeight = (Double(boardView.bounds.height) - borderWidth * 2.0 - tileGap * 3.0) / 4.0
+        tileWidth = (Double(boardView.bounds.width) - tileGap * 3.0) / 4.0
+        tileHeight = (Double(boardView.bounds.height) - tileGap * 3.0) / 4.0
 
         setTileViewPositions()
         checkIfPuzzleSolved()
@@ -85,8 +83,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
             for col in 0...3 {
                 if let tile = game.board[row][col] {
                     let tileView = tileViews[tile.identifier]!
-                    let frame = CGRect(x: (tileWidth + tileGap) * Double(col) + borderWidth,
-                                       y: (tileHeight + tileGap) * Double(row) + borderWidth,
+                    let frame = CGRect(x: (tileWidth + tileGap) * Double(col),
+                                       y: (tileHeight + tileGap) * Double(row),
                                        width: tileWidth,
                                        height: tileHeight)
                     tileView.frame = frame
@@ -99,8 +97,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
         if let tileView = recognizer.view {
             
             // compute row and col of swiped tile (inverse of frame equations above)
-            let row = Int(round((Double(tileView.frame.origin.y) - borderWidth) / (tileHeight + tileGap)))
-            let col = Int(round((Double(tileView.frame.origin.x) - borderWidth) / (tileWidth + tileGap)))
+            let row = Int(round((Double(tileView.frame.origin.y)) / (tileHeight + tileGap)))
+            let col = Int(round((Double(tileView.frame.origin.x)) / (tileWidth + tileGap)))
             
             if game.moveTileFrom(row: row, col: col, to: recognizer.direction) {
                 // animate moving the swiped tile(s)
