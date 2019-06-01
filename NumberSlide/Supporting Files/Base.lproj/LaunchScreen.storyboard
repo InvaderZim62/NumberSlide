@@ -20,9 +20,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-Pf-rje">
                                 <rect key="frame" x="10" y="181" width="394" height="394"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-WF-2i9">
+                                        <rect key="frame" x="14" y="14" width="366" height="366"/>
+                                        <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="WEt-WF-2i9" firstAttribute="top" secondItem="k4n-Pf-rje" secondAttribute="top" constant="14" id="GYk-6t-Snd"/>
+                                    <constraint firstItem="WEt-WF-2i9" firstAttribute="leading" secondItem="k4n-Pf-rje" secondAttribute="leading" constant="14" id="HeR-Kh-LE0"/>
+                                    <constraint firstAttribute="trailing" secondItem="WEt-WF-2i9" secondAttribute="trailing" constant="14" id="lNj-yl-cZb"/>
                                     <constraint firstAttribute="width" secondItem="k4n-Pf-rje" secondAttribute="height" multiplier="1:1" id="qua-xM-hfk"/>
+                                    <constraint firstAttribute="bottom" secondItem="WEt-WF-2i9" secondAttribute="bottom" constant="14" id="yMV-xd-wIP"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -66,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.989130434782609" y="373.91304347826087"/>
+            <point key="canvasLocation" x="52.173913043478265" y="373.36956521739131"/>
         </scene>
     </scenes>
 </document>

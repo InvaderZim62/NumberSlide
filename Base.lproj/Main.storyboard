@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mY-LV-1Id">
-                                <rect key="frame" x="10" y="171" width="394" height="394"/>
+                                <rect key="frame" x="10" y="181" width="394" height="394"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBb-BC-1qm">
                                         <rect key="frame" x="14" y="14" width="366" height="366"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0O-zy-kyj">
-                                <rect key="frame" x="142.66666666666663" y="647" width="128.99999999999997" height="39"/>
+                                <rect key="frame" x="142.66666666666666" y="647" width="128.99999999999997" height="39"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
@@ -63,7 +63,7 @@
                             <constraint firstItem="b0O-zy-kyj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="W4u-pZ-PPL"/>
                             <constraint firstItem="5mY-LV-1Id" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="edf-IJ-3wl"/>
                             <constraint firstItem="b0O-zy-kyj" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="fJC-5y-V57"/>
-                            <constraint firstItem="5mY-LV-1Id" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-10" id="fUu-w3-Ber"/>
+                            <constraint firstItem="5mY-LV-1Id" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="fUu-w3-Ber"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b0O-zy-kyj" secondAttribute="bottom" constant="50" id="y9i-OP-Uhe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
