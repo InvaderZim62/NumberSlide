@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-Pf-rje">
-                                <rect key="frame" x="10" y="181" width="394" height="394"/>
+                                <rect key="frame" x="10" y="166" width="355" height="355"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEt-WF-2i9">
-                                        <rect key="frame" x="14" y="14" width="366" height="366"/>
+                                        <rect key="frame" x="14" y="14" width="327" height="327"/>
                                         <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
@@ -38,15 +38,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="k4n-Pf-rje" secondAttribute="bottom" constant="10" id="2oK-9c-qik"/>
                             <constraint firstItem="k4n-Pf-rje" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="BT7-bv-TDZ"/>
-                            <constraint firstItem="k4n-Pf-rje" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Fpo-C8-YPe"/>
+                            <constraint firstItem="k4n-Pf-rje" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" priority="750" constant="10" id="Fpo-C8-YPe"/>
                             <constraint firstItem="k4n-Pf-rje" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Fpp-YK-B0D"/>
                             <constraint firstItem="k4n-Pf-rje" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VYd-60-hfi"/>
                             <constraint firstItem="k4n-Pf-rje" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Xgd-GI-ZfN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k4n-Pf-rje" secondAttribute="trailing" constant="10" id="agA-Ea-SsM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="k4n-Pf-rje" secondAttribute="bottom" constant="10" id="d3U-Gl-rLu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k4n-Pf-rje" secondAttribute="trailing" constant="10" id="kqY-RW-B4v"/>
+                            <constraint firstItem="k4n-Pf-rje" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="glZ-My-CTq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k4n-Pf-rje" secondAttribute="trailing" priority="750" constant="10" id="kqY-RW-B4v"/>
                             <constraint firstItem="k4n-Pf-rje" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="nPB-ha-G9h"/>
+                            <constraint firstItem="k4n-Pf-rje" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" priority="750" id="qmP-z0-n0u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
