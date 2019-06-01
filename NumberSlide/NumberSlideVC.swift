@@ -36,7 +36,11 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     // called after viewDidLoad, when bounds change, or when button or label text changes
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-    
+        
+        // next two lines are needed to wait for bounds to finish changing on iPad
+        boardView.setNeedsLayout()
+        boardView.layoutIfNeeded()
+        
         tileWidth = (Double(boardView.bounds.width) - tileGap * 3.0) / 4.0
         tileHeight = (Double(boardView.bounds.height) - tileGap * 3.0) / 4.0
 
