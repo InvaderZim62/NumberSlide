@@ -66,8 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				4A1A416C2291DD4100B5C33D /* NumberSlideVC.swift */,
-				4A1A41832292008500B5C33D /* TileView.swift */,
 				4A1A41812291EFBE00B5C33D /* NumberSlide.swift */,
+				4A1A41832292008500B5C33D /* TileView.swift */,
 				4A1A417F2291E0BA00B5C33D /* Tile.swift */,
 				4AB29BC5229499F900D1B9C0 /* click.wav */,
 				4AB29BC72294CD4400D1B9C0 /* tada.wav */,

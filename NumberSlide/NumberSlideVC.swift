@@ -11,12 +11,12 @@
 //
 
 import UIKit
-import AVFoundation
+import AVFoundation  // needed for AVAudioPlayer
 
-class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
+class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate needed for audioPlayerDidFinishPlaying
     
     private var game = NumberSlide()
-    private var tileViews = [Int:TileView]()
+    private var tileViews = [Int:TileView]()  // tile.identifier:tileView
     private var player: AVAudioPlayer?
 
     private var tileGap = 2.0
@@ -128,7 +128,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     }
     
     // wait until TaDa sound finishes, before showing "Play Again" button
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {  // AVAudioPlayerDelegate
         playAgainButton.isHidden = false
     }
 
@@ -145,11 +145,12 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate {
     }
     
     // call "Play Again" when iPhone shaken
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            playAgainButton.sendActions(for: .touchUpInside)
-        }
-    }
+    // pws: disabled, since kids shake the phone too much
+//    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+//        if motion == .motionShake {
+//            playAgainButton.sendActions(for: .touchUpInside)
+//        }
+//    }
 
     func playClickSound() {
         guard let url = Bundle.main.url(forResource: "click", withExtension: "wav") else { return }
