@@ -6,7 +6,7 @@
 //  Copyright © 2019 Phil Stern. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Tile: Codable {  // Codeable, so it can be saved in UserDefaults
     
