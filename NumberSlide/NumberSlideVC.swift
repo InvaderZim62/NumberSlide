@@ -60,7 +60,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
                 tileView.backgroundColor = .white  // odd numbered tiles are white
             }
             
-            // add four swipe gestures to tileView
+            // add four separate swipe gestures to tileView
+            // Note: swipe.direction = [.left, .right, .up, .down] is supposed to work, but doesn't
             let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(tileSwiped))
             swipeLeft.direction = .left
             tileView.addGestureRecognizer(swipeLeft)
@@ -99,6 +100,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
     
     @objc private func tileSwiped(recognizer: UISwipeGestureRecognizer) {
         if let tileView = recognizer.view {
+            print(recognizer.direction)
             
             // compute row and col of swiped tile (inverse of frame equations above)
             let row = Int(round((Double(tileView.frame.origin.y)) / (tileHeight + tileGap)))
