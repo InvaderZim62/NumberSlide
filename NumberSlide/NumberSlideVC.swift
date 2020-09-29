@@ -25,7 +25,9 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
     
     @IBOutlet weak var boardView: UIView!
     @IBOutlet weak var playAgainButton: UIButton!
-    
+
+    // MARK: - Start of code
+
     override func viewDidLoad() {
         super.viewDidLoad()
         playAgainButton.isHidden = true
