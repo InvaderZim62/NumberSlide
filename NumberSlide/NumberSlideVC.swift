@@ -5,8 +5,8 @@
 //  Created by Phil Stern on 5/19/19.
 //  Copyright © 2019 Phil Stern. All rights reserved.
 //
-//  click.wav obtained from: https://fresound.org/people/kwahmah_02/sounds/256116
-//  tada.wav obtained from: https://fresound.org/people/jimhancock/sounds/376318
+//  click.wav obtained from: https://freesound.org/people/kwahmah_02/sounds/256116
+//  tada.wav obtained from: https://freesound.org/people/jimhancock/sounds/376318
 //  both files are in the public domain (CC0 1.0 Universal)
 //
 
@@ -17,7 +17,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
     
     private var game = NumberSlide()
     private var tileViews = [Int:TileView]()  // tile.identifier:tileView
-    private var player: AVAudioPlayer?
+    private var clickPlayer: AVAudioPlayer?
+    private var tadaPlayer: AVAudioPlayer?
 
     private var tileGap = 2.0
     private var tileWidth = 0.0
@@ -33,6 +34,8 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
         playAgainButton.isHidden = true
         game.restore()  // pick up where you left off
         createTileViews()
+        setupClickPlayer()
+        setupTaDaPlayer()
     }
     
     // called after viewDidLoad, when bounds change, or when button or label text changes
@@ -115,7 +118,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
                                   options: [],
                                   animations: { self.setTileViewPositions() },
                                   completion: { position in
-                                    self.playClickSound()
+                                    self.clickPlayer?.play()
                                     self.checkIfPuzzleSolved() }
                 )
                 game.save()
@@ -125,7 +128,7 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
     
     func checkIfPuzzleSolved() {
         if game.isPuzzleSolved() {
-            playTaDaSound()
+            tadaPlayer?.play()
         } else {
             playAgainButton.isHidden = true
         }
@@ -156,32 +159,24 @@ class NumberSlideVC: UIViewController, AVAudioPlayerDelegate { // Delegate neede
 //        }
 //    }
 
-    func playClickSound() {
+    func setupClickPlayer() {
         guard let url = Bundle.main.url(forResource: "click", withExtension: "wav") else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
-            guard let player = player else { return }
-            player.play()
-            
+            clickPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
         } catch let error {
             print(error.localizedDescription)
         }
     }
     
-    func playTaDaSound() {
+    func setupTaDaPlayer() {
         guard let url = Bundle.main.url(forResource: "tada", withExtension: "wav") else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
-            guard let player = player else { return }
-            player.delegate = self  // to receive call to audioPlayerDidFinishPlaying
-            player.play()
-            
+            tadaPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            tadaPlayer?.delegate = self  // to receive call to audioPlayerDidFinishPlaying
         } catch let error {
             print(error.localizedDescription)
         }
