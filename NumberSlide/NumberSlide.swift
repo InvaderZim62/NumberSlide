@@ -42,7 +42,7 @@ class NumberSlide {
         }
     }
 
-    // ramdomly change the order of the tiles array and verify it's solvable
+    // randomly change the order of the tiles array and verify it's solvable
     func mixTiles() {
         blankRow = 4.arc4random
         blankCol = 4.arc4random

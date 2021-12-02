@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Tile: Codable {  // Codeable, so it can be saved in UserDefaults
+class Tile: Codable {  // Codable, so it can be saved in UserDefaults
     
     var identifier: Int
     
