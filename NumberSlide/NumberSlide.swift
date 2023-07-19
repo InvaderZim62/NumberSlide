@@ -165,11 +165,7 @@ class NumberSlide {
                 if num2 < num1 { inversionCount += 1 }
             }
         }
-        if inversionCount % 2 == 0 {
-            return true
-        } else {
-            return false
-        }
+        return inversionCount % 2 == 0
     }
 
     func isPuzzleSolved() -> Bool {
