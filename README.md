@@ -4,6 +4,6 @@ I had a number slide when I was a kid.  I played with it all the time.  I loved 
 
 ![Number Slide](https://github.com/InvaderZim62/NumberSlide/assets/34785252/976ed263-8ddd-4c0e-9d85-03e1cbcc91f6)
 
-<img width="263" alt="Number Slide Solved" src="https://github.com/InvaderZim62/NumberSlide/assets/34785252/4571bb3a-36d8-4d41-b0e1-3c0e63653eb1">
-<img width="262" alt="Number Slide White Red" src="https://github.com/InvaderZim62/NumberSlide/assets/34785252/f1385207-df77-481f-b481-5e6dfacc5a65">
-<img width="262" alt="Number Slide Spiral" src="https://github.com/InvaderZim62/NumberSlide/assets/34785252/bb5513d3-a1a8-4e4e-a8a3-6bd07166a9a6">
+<img width="263" alt="Number Slide solved" src="https://github.com/InvaderZim62/NumberSlide/assets/34785252/a1eb564a-2567-4019-894e-ef502f728063">
+<img width="262" alt="Number Slide red-white" src="https://github.com/InvaderZim62/NumberSlide/assets/34785252/47e11ad4-e21a-469a-bd9b-dc132e4a0770">
+<img width="262" alt="Number Slide spiral" src="https://github.com/InvaderZim62/NumberSlide/assets/34785252/1fefee6e-fd56-4ced-84af-e590b152cc60">
